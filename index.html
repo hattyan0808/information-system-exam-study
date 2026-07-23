@@ -29,6 +29,7 @@
       for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
       const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
       const html=await new Response(stream).text();
+      const cleanedHtml=html.replace('<button class="btn-ghost" onclick="openPracticePreset(\'cp\')">クリティカルパス図を解く</button>','');
 
       const overrideStyle=`<style>
         .topbar{position:static!important;top:auto!important}
@@ -89,7 +90,7 @@
       })();
       <\/script>`;
 
-      const patched=html.replace('</head>',overrideStyle+'</head>').replace('</body>',enhancement+'</body>');
+      const patched=cleanedHtml.replace('</head>',overrideStyle+'</head>').replace('</body>',enhancement+'</body>');
       document.open();
       document.write(patched);
       document.close();
