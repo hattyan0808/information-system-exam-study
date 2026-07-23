@@ -11,6 +11,7 @@
     try{renderPractice();}catch(e){}
     try{renderCalc();}catch(e){}
     try{renderDrill();}catch(e){}
+    try{if(window.renderPastCombined)window.renderPastCombined();}catch(e){}
     try{updateStats();}catch(e){}
   }
 })();
