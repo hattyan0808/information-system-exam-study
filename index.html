@@ -18,7 +18,7 @@ const bin=atob(parts.join(''));const bytes=new Uint8Array(bin.length);for(let i=
 const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));let html=await new Response(stream).text();
 html=html.replace('<button class="btn-ghost" onclick="openPracticePreset(\'cp\')">クリティカルパス図を解く</button>','');
 const css='<style>.topbar{position:static!important;top:auto!important}.sticky-mini{position:static!important;top:auto!important}@media(max-width:820px){.sidebar{position:static!important;top:auto!important}}.auto-figure{border:1px solid #dfe3f0;background:#fbfcff;border-radius:16px;padding:16px;margin:0 0 22px;overflow:auto}.auto-figure svg{width:100%;height:auto;display:block;min-width:700px;max-height:380px}.auto-figure .figurecap{font-size:13px;color:#7d8699;margin-top:10px}</style>';
-html=html.replace('</head>',css+'</head>').replace('</body>','<script src="slide_questions.js"><\/script><script src="site_enhancements.js"><\/script></body>');
+html=html.replace('</head>',css+'</head>').replace('</body>','<script src="slide_questions.js"><\/script><script src="site_enhancements.js"><\/script><script src="randomize_questions.js"><\/script></body>');
 document.open();document.write(html);document.close();
 }catch(e){document.getElementById('status').innerHTML='<h1>読み込みに失敗しました</h1><p>'+String(e.message||e)+'</p>';console.error(e)}})();
 </script>
